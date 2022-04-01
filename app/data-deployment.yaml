@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
@@ -9,6 +9,9 @@ metadata:
     io.kompose.service: data
   name: data
 spec:
+  selector:
+    matchLabels:
+      io.kompose.service: data
   replicas: 1
   strategy: {}
   template:
@@ -27,7 +30,7 @@ spec:
           value: root
         - name: MYSQL_ROOT_PASSWORD
           value: root
-        image: data
+        image: saikal1984/quotes-data:v1
         name: db
         ports:
         - containerPort: 3306

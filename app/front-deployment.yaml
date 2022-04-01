@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   annotations:
@@ -9,6 +9,9 @@ metadata:
     io.kompose.service: front
   name: front
 spec:
+  selector:
+    matchLabels:
+      io.kompose.service: front
   replicas: 1
   strategy: {}
   template:
@@ -18,7 +21,7 @@ spec:
         io.kompose.service: front
     spec:
       containers:
-      - image: front
+      - image: saikal1984/quotes-front:v1
         name: front
         ports:
         - containerPort: 3001
