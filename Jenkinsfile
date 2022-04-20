@@ -8,14 +8,30 @@ pipeline {
                 sh 'git clone https://github.com/saikal1984/assignment3.git'
             }
         }
-        stage('Test') { 
+        stage('run makefile') { 
             steps {
-                echo 'test'
+                sh 'apt-get update'
+                sh 'apt-get install make'
+    
+                sh 'ls'
+                sh 'pwd'
+                dir('assignment3'){
+                    sh "pwd"
+                    dir('app'){
+                        sh 'pwd'
+                        sh 'ls'
+                        sh 'make run'
+                        sh 'make fill-db'
+                    }
+                }
+                
+               
+ 
             }
         }
-        stage('Deploy') { 
+        stage('fill db') { 
             steps {
-                echo 'build'
+                echo 'test'
             }
         }
     }
